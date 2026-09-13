@@ -30,11 +30,12 @@ int main()
 
     if (previous && !current) {
       led = !led;
-      if (led) {
+      gpio_put(LED_PIN, led);
+      /* if (led) {
         *gpio_out_set = led_mask;
       } else {
         *gpio_out_clr = led_mask;
-      }
+      } */
     }
 
     previous = current;
