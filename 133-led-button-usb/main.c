@@ -4,12 +4,13 @@
 #include <hardware/regs/sio.h>
 #include <pico/stdio.h>
 #include <pico/time.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 
 const uint BUTTON_PIN = 15;
 const uint LED_PIN = 25;
-const uint DEBOUNCE_MS = 20;
+const uint DEBOUNCE_MS = 50;
 
 bool get_button_debounce(uint pin) {
   bool state = gpio_get(pin);
@@ -20,6 +21,21 @@ bool get_button_debounce(uint pin) {
 void set_led(bool led) {
   gpio_put(LED_PIN, led);
   printf("led %s\n", led ? "on" : "off");
+}
+
+void handle_command(int command, bool* led) {
+  switch (command) {
+  case 'e':
+    *led = true;
+    set_led(*led);
+    break;
+  case 'd':
+    *led = false;
+    set_led(*led);
+    break;
+  default:
+    printf("unknown command: %c\n", command);
+  }
 }
 
 int main() {
@@ -40,8 +56,7 @@ int main() {
   bool led = false;
   bool previous = false;
 
-  while (1)
-  {
+  while (1) {
     bool current = get_button_debounce(BUTTON_PIN);
 
     if (previous && !current) {
@@ -55,5 +70,13 @@ int main() {
     }
 
     previous = current;
+
+    int command = getchar_timeout_us(0);
+
+    if (command == PICO_ERROR_TIMEOUT) {
+      continue;
+    }
+
+    handle_command(command, &led);
   }
 }
