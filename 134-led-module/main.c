@@ -1,4 +1,5 @@
 #include "led.h"
+#include "log.h"
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include <hardware/regs/addressmap.h>
@@ -22,12 +23,17 @@ void handle_command(int command) {
   switch (command) {
   case 'e':
     led_set(true);
+    LOG_INF("led %s\n", led_is_on() ? "on" : "off");
     break;
   case 'd':
     led_set(false);
+    LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+    break;
+  case 'v':
+    log_version();
     break;
   default:
-    printf("unknown command: %c\n", command);
+    LOG_ERR("unknown command: %c\n", command);
   }
 }
 
@@ -47,7 +53,7 @@ int main() {
 
     if (previous && !current) {
       led_toggle();
-      printf("led %s\n", led_is_on() ? "on" : "off");
+      LOG_INF("led %s\n", led_is_on() ? "on" : "off");
     }
 
     previous = current;
@@ -58,6 +64,7 @@ int main() {
       continue;
     }
 
+    LOG_DBG("got %c\n", command);
     handle_command(command);
   }
 }
