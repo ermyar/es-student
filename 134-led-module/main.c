@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include "device.h"
 
 const uint BUTTON_PIN = 15;
 const uint DEBOUNCE_MS = 50;
@@ -28,6 +29,9 @@ void handle_command(int command) {
   case 'd':
     led_set(false);
     LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+    break;
+  case 'i':
+    device_info();
     break;
   case 'v':
     log_version();
