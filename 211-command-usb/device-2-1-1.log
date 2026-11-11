@@ -1,0 +1,56 @@
+задание: 2.1.1
+проект: 211-command-usb
+устройство: 2e8a:000a
+серийный номер: 504434042886521C
+порт: /dev/ttyACM0
+начало: 2026-11-12T00:20:19
+   0.000 --> enable
+   0.022 <-- dbg read_line:62 got e
+   0.072 <-- edbg read_line:62 got n
+   0.122 <-- ndbg read_line:62 got a
+   0.173 <-- adbg read_line:62 got b
+   0.223 <-- bdbg read_line:62 got l
+   0.272 <-- ldbg read_line:62 got e
+   0.323 <-- edbg read_line:62 got
+   0.323 <-- led on
+   0.324 <-- inf handle_command:35 led on
+   2.326 --> disable
+   2.373 <-- dbg read_line:62 got d
+   2.423 <-- ddbg read_line:62 got i
+   2.473 <-- idbg read_line:62 got s
+   2.523 <-- sdbg read_line:62 got a
+   2.573 <-- adbg read_line:62 got b
+   2.624 <-- bdbg read_line:62 got l
+   2.674 <-- ldbg read_line:62 got e
+   2.724 <-- edbg read_line:62 got
+   2.724 <-- led off
+   2.725 <-- inf handle_command:40 led off
+   4.727 --> info
+   4.774 <-- dbg read_line:62 got i
+   4.824 <-- idbg read_line:62 got n
+   4.875 <-- ndbg read_line:62 got f
+   4.925 <-- fdbg read_line:62 got o
+   4.975 <-- odbg read_line:62 got
+   4.976 <-- project: 211-command-usb
+   4.977 <-- repo: https://github.com/ermyar/es-student
+   4.977 <-- board: pico
+   4.978 <-- serial: 504434042886521C
+   4.980 <-- chip: manufacturer 0x927, part 0x0002, revision 2
+   4.981 <-- pico-sdk: 2.3.0
+   6.983 --> nosuchcommand
+   7.025 <-- dbg read_line:62 got n
+   7.076 <-- ndbg read_line:62 got o
+   7.126 <-- odbg read_line:62 got s
+   7.176 <-- sdbg read_line:62 got u
+   7.226 <-- udbg read_line:62 got c
+   7.276 <-- cdbg read_line:62 got h
+   7.326 <-- hdbg read_line:62 got c
+   7.377 <-- cdbg read_line:62 got o
+   7.427 <-- odbg read_line:62 got m
+   7.477 <-- mdbg read_line:62 got m
+   7.527 <-- mdbg read_line:62 got a
+   7.577 <-- adbg read_line:62 got n
+   7.627 <-- ndbg read_line:62 got d
+   7.677 <-- ddbg read_line:62 got
+   7.679 <-- err handle_command:52 unknown command: nosuchcommand
+итог: отправлено команд 4, принято строк 45
