@@ -1,0 +1,63 @@
+задание: 2.1.2
+проект: 211-command-usb
+устройство: 2e8a:000a
+серийный номер: 504434042886521C
+порт: /dev/ttyACM0
+начало: 2026-11-12T20:38:12
+   0.000 --> enable
+   0.010 <-- dbg read_line:84 got e
+   0.060 <-- edbg read_line:84 got n
+   0.111 <-- ndbg read_line:84 got a
+   0.161 <-- adbg read_line:84 got b
+   0.211 <-- bdbg read_line:84 got l
+   0.261 <-- ldbg read_line:84 got e
+   0.311 <-- edbg read_line:84 got
+   0.312 <-- led on
+   0.312 <-- inf cmd_enable:31 led on
+   2.315 --> disable
+   2.361 <-- dbg read_line:84 got d
+   2.411 <-- ddbg read_line:84 got i
+   2.461 <-- idbg read_line:84 got s
+   2.512 <-- sdbg read_line:84 got a
+   2.562 <-- adbg read_line:84 got b
+   2.612 <-- bdbg read_line:84 got l
+   2.662 <-- ldbg read_line:84 got e
+   2.712 <-- edbg read_line:84 got
+   2.713 <-- led off
+   2.713 <-- inf cmd_disable:36 led off
+   4.716 --> info
+   4.763 <-- dbg read_line:84 got i
+   4.813 <-- idbg read_line:84 got n
+   4.863 <-- ndbg read_line:84 got f
+   4.913 <-- fdbg read_line:84 got o
+   4.963 <-- odbg read_line:84 got
+   4.964 <-- project: 211-command-usb
+   4.965 <-- repo: https://github.com/ermyar/es-student
+   4.965 <-- board: pico
+   4.966 <-- serial: 504434042886521C
+   4.967 <-- chip: manufacturer 0x927, part 0x0002, revision 2
+   4.967 <-- pico-sdk: 2.3.0
+   6.970 --> ping
+   7.014 <-- dbg read_line:84 got p
+   7.064 <-- pdbg read_line:84 got i
+   7.114 <-- idbg read_line:84 got n
+   7.164 <-- ndbg read_line:84 got g
+   7.214 <-- gdbg read_line:84 got
+   7.215 <-- pong
+   9.218 --> nosuchcommand
+   9.265 <-- dbg read_line:84 got n
+   9.315 <-- ndbg read_line:84 got o
+   9.365 <-- odbg read_line:84 got s
+   9.415 <-- sdbg read_line:84 got u
+   9.465 <-- udbg read_line:84 got c
+   9.515 <-- cdbg read_line:84 got h
+   9.565 <-- hdbg read_line:84 got c
+   9.615 <-- cdbg read_line:84 got o
+   9.666 <-- odbg read_line:84 got m
+   9.716 <-- mdbg read_line:84 got m
+   9.766 <-- mdbg read_line:84 got a
+   9.816 <-- adbg read_line:84 got n
+   9.866 <-- ndbg read_line:84 got d
+   9.916 <-- ddbg read_line:84 got
+   9.918 <-- err handle_command:74 unknown command: nosuchcommand
+итог: отправлено команд 5, принято строк 51

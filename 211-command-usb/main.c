@@ -7,6 +7,7 @@
 #include <pico/stdio.h>
 #include <pico/time.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -14,11 +15,6 @@
 
 const uint BUTTON_PIN = 15;
 const uint DEBOUNCE_MS = 50;
-
-const char* cmd_enable = "enable";
-const char* cmd_disable = "disable";
-const char* cmd_info = "info";
-const char* cmd_version = "version";
 
 int line_length = 0;
 char line[BUFSIZ];
@@ -29,27 +25,54 @@ bool get_button_debounce(uint pin) {
   return state && gpio_get(pin);
 }
 
-void handle_command(const char* command) {
-  if (strcmp(command, cmd_enable) == 0) {
-    led_set(true);
-    LOG_INF("led %s\n", led_is_on() ? "on" : "off");
-    return;
-  }
-  if (strcmp(command, cmd_disable) == 0) {
-    led_set(false);
-    LOG_INF("led %s\n", led_is_on() ? "on" : "off");
-    return;
-  }
-  if (strcmp(command, cmd_info) == 0) {
-    device_info();
-    return;
-  }
-  if (strcmp(command, cmd_version) == 0) {
-    log_version();
-    return;
-  }
+void cmd_enable(void) {
+  led_set(true);
+  LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+}
 
-  LOG_ERR("unknown command: %s\n", command);
+void cmd_disable(void) {
+  led_set(false);
+  LOG_INF("led %s\n", led_is_on() ? "on" : "off");
+}
+
+void cmd_info(void) {
+  device_info();
+}
+
+void cmd_version(void) {
+  log_version();
+}
+
+void cmd_ping(void) {
+  printf("pong\n");
+}
+
+typedef void (*command_handler_t)(void);
+
+struct command_t {
+  const char *name;
+  command_handler_t handler;
+};
+
+const struct command_t commands[] = {
+  { "enable", cmd_enable},
+  {"disable", cmd_disable},
+  {"info", cmd_info},
+  {"version", cmd_version},
+  {"ping", cmd_ping}
+};
+
+void handle_command(const char* cmd) {
+  size_t commands_len = sizeof(commands) / sizeof(commands[0]);
+  for (size_t i = 0; i < commands_len; ++i) {
+    if (strcmp(commands[i].name, cmd) == 0) {
+      if (commands[i].handler != NULL) {
+        commands[i].handler();
+        return;
+      }
+    }
+  }
+  LOG_ERR("unknown command: %s\n", cmd);
 }
 
 void read_line() {
