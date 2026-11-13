@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "device.h"
+#include "memory.h"
 
 const uint BUTTON_PIN = 15;
 const uint DEBOUNCE_MS = 50;
@@ -47,6 +48,10 @@ void cmd_ping(void) {
   printf("pong\n");
 }
 
+void cmd_mem_info(void) {
+  mem_info();
+}
+
 typedef void (*command_handler_t)(void);
 
 struct command_t {
@@ -59,7 +64,8 @@ const struct command_t commands[] = {
   {"disable", cmd_disable},
   {"info", cmd_info},
   {"version", cmd_version},
-  {"ping", cmd_ping}
+  {"ping", cmd_ping},
+  {"mem_info", cmd_mem_info}
 };
 
 void handle_command(const char* cmd) {
